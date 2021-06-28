@@ -1,0 +1,31 @@
+<!--
+<h4>kgfjgfjkgfj</h4> -->
+ <h3>
+Articles
+</h3>
+<div>
+<div class="row">
+ <div class="col-lg">
+   <table class="table table-hover" >
+     <thead>
+       <tr>
+         <th >ID</th><th >Reference</th><th >N commande</th><th >Quantite</th><th >Famille</th><th >Fournisseur</th><th>Date livraison</th>
+       </tr>
+     </thead>
+     <tbody>
+       <tr *ngFor = "let article of articles | paginate: {id: 'listing_pagination', itemsPerPage: 4,
+                      currentPage: page, totalItems: totalRecords}">
+         <td>{{article.id}}</td><td>{{article.ref}}</td><td>{{article.nbc}}</td><td>{{article.quantite}}</td><td>{{article.categorie}}</td><td>{{article.fournisseur}}</td><td>{{article.dateLivraison}}</td>
+         <!-- <td>
+           <button class="btn btn-outline-primary" (click)='operation = "modifier"; selectedArticle=article;'>Modifier</button>
+           <button class="btn btn-outline-danger" (click)='operation = "supprimer"; selectedArticle=item;'>Supprimer</button>
+         </td> -->
+       </tr>
+     </tbody>
+   </table>
+   <div>
+     <pagination-controls id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+   </div>
+ </div>
+ </div>
+ </div>

@@ -1,0 +1,34 @@
+<nav class="hidden-xs-down bg-faded sidebar">
+  <ul class="nav nav-pills flex-column">
+    <li class="nav-item">
+      <a class="nav-link" [routerLink]="[{outlets: {contentOutlet: 'article'}}]"
+       *ngIf="hasRoleUser()"
+        routerLinkActive="active">Article</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" [routerLink]="[{outlets: {contentOutlet: 'user'}}]"
+      *ngIf="hasRoleAdmin()"
+      routerLinkActive="active">Responsables</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" [routerLink]="[{outlets: {contentOutlet: 'upload-files'}}]"
+       *ngIf="hasRoleUser()"
+        routerLinkActive="active">Remarques</a>
+    </li>
+
+    <!-- <li class="nav-item">
+      <a class="nav-link" href="#">Services</a>
+    </li> -->
+  </ul>
+  <!-- <ul class="nav nav-pills flex-column">
+    <li class="nav-item">
+      <a class="nav-link" href="#">Nav item</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Nav item again</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">One more nav</a>
+    </li>
+  </ul> -->
+  </nav>

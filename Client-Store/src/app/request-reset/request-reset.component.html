@@ -1,0 +1,20 @@
+
+
+  <div class="container">
+    <div class="card">
+      <div class="card-header">Send email for reset password</div>
+      <div class="card-body">
+        <form [formGroup]="resetForm" (submit)="resetpass()">
+          <div class="form-group row">
+            <label for="email"><b>Email</b></label>
+            <input type="text" placeholder="Enter Your Email" id="email" name="email" formControlName="email" [(ngModel)]="form.email" />
+
+          </div>
+          </form>
+
+      </div>
+    </div>
+
+    <button type="submit">Send Password Reset</button>
+
+  </div>

@@ -1,0 +1,46 @@
+<!-- <app-crud
+[title]="'Articles'"
+[data]="articles"
+[service]="articleService"
+[initItem]="article"
+[initForm]="articleForm"
+[dataModelList]="articlesModel"
+>
+</app-crud> -->
+<!-- *ngFor="let articles of articlesModel" -->
+
+
+<!-- <ng-container *ngIf="data; else loading"> -->
+  <h3>Articles</h3>
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="collapse" [ngClass]="{'active': articleType == 'sample' }"
+       href="" (click)="articleType = 'sample'">Simple</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="collapse" [ngClass]="{'active': articleType == 'upload' }"
+       href="" (click)="articleType = 'upload'">Importer un fichier</a>
+    </li>
+  </ul>
+
+  <div  [ngStyle]="{'margin-top': '20px'}">
+    <app-sample *ngIf="articleType == 'sample'"></app-sample>
+    <div class="container" *ngIf="articleType == 'upload'">
+      <app-upload
+      [dataModelList]="dataModelList"
+      [service]="service">
+      <!-- (updateData)="dataChanged($event)" -->
+    </app-upload>
+      <!-- <app-upload [dataModelList]="dataModelList"
+                  [service]="service"
+                  (updateData)="dataChanged($event)">
+      </app-upload> -->
+    </div>
+  </div>
+
+
+
+<!-- </ng-container>
+<ng-template #loading>
+    loading ....
+  </ng-template> -->

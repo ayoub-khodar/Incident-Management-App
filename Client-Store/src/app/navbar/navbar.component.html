@@ -1,0 +1,24 @@
+<div >
+  <div class="pull-right">
+    <button class="btn btn-outline-danger btn-sm" (click)='logout()' >Log Out</button>
+  </div>
+  <a href="" data-toggle="collapse" (click) = "afficherSideBar()"><i class="fa fa-bars" aria-hidden="true"></i></a>
+<hr/>
+  <nav class="navbar navbar-expand-sm bg-dark">
+    <i class="glyphicon glyphicon-search"></i>
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="[{outlets: {contentOutlet: 'exportarticle'}}]"
+         *ngIf="hasRoleAdmin()"
+          routerLinkActive="active">Export Articles</a>
+      </li>   
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="[{outlets: {contentOutlet: 'upload-files'}}]"
+         *ngIf="hasRoleUser()"
+          routerLinkActive="active">Remarques</a>
+      </li>
+
+
+    </ul>
+  </nav>
+</div>

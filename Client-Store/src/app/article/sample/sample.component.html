@@ -1,0 +1,120 @@
+<div class="row">
+ <div class="col-lg-7">
+   <table class="table table-hover" >
+     <thead>
+       <tr >
+         <th >Reference</th><th >Famille</th><th >Quantite</th>
+         <th>
+           <button class="btn btn-outline-primary" (click)='operation = "ajouter"; initArticle();'>Ajouter</button>
+             <button class="btn btn-outline-success" (click)="detail()">Liste complet</button>
+         </th>
+       </tr>
+     </thead>
+     <tbody>
+       <tr *ngFor = "let article of articles | paginate: {id: 'listing_pagination', itemsPerPage: 4,
+                      currentPage: page, totalItems: totalRecords}" >
+         <td >{{article.ref}}</td>
+         <td >{{article.categorie}}</td>
+         <td >{{article.quantite}}</td>
+         <td>
+           <button class="btn btn-outline-primary" (click)='operation = "modifier"; selectedArticle=article;'>Modifier</button>
+           <button class="btn btn-outline-danger" (click)='operation = "supprimer"; selectedArticle=article;'>Supprimer</button>
+         </td>
+       </tr>
+     </tbody>
+     <!-- <tfoot class="grey lighten-5 w-100">
+    <tr>
+      <td colspan="4">
+        <mdb-table-pagination [tableEl]="tableEl" [searchDataSource]="articles"></mdb-table-pagination>
+      </td>
+    </tr>
+    </tfoot> -->
+   </table>
+   <div>
+     <pagination-controls id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+   </div>
+ </div>
+ <div class="col-lg-5">
+   <div class="card">
+     <div class="card-header bg-info text-white">
+{{operation == 'ajouter' ? 'Ajouter' :
+operation == 'modifier' ? 'Modifier' :
+operation == 'supprimer' ? 'Supprimer' : ''}}
+     </div>
+     <div class="card-body">
+       <div *ngIf = "operation == 'ajouter' || operation == 'modifier'" >
+         <form [formGroup]="articleForm">
+
+
+         <!-- <form [formGroup]="crudForm" >
+           <div *ngFor="let dataModel of dataModelList" [ngSwitch]="dataModel.dataType">
+             <div class="form-group"  *ngIf="!dataModel.readonly">
+               <label>{{dataModel.columnReference}}</label>
+               <input *ngSwitchCase="'string'" type="text" class="form-control" formControlName="{{dataModel.columnName}}"
+               [(ngModel)]="selectedItem[dataModel.columnName]"/>
+               <input *ngSwitchCase="'number'" type="number" class="form-control" formControlName="{{dataModel.columnName}}"
+               [(ngModel)]="selectedItem[dataModel.columnName]"/>
+               <input *ngSwitchCase="'date'" type="date" class="form-control" formControlName="{{dataModel.columnName}}"
+               [(ngModel)]="selectedItem[dataModel.columnName]"/>
+             </div>
+
+           <div class="alert alert-danger" *ngIf="articleForm.controls['ref'].invalid && (articleForm.controls['ref'].touched || articleForm.controls['ref'].dirty)">
+                 Reference est obligatoire
+             </div>
+           </div> -->
+
+
+           <div class="form-group">
+             <label>Reference</label>
+             <input type="text" class="form-control" formControlName="ref" [(ngModel)]="selectedArticle.ref"/>
+           </div>
+           <div class="alert alert-danger" *ngIf="articleForm.controls['ref'].invalid && (articleForm.controls['ref'].touched || articleForm.controls['ref'].dirty)">
+               Reference est obligatoire
+           </div>
+           <div class="form-group">
+             <label>N de commande</label>
+             <input type="number" class="form-control" formControlName="nbc" [(ngModel)]="selectedArticle.nbc" />
+           </div>
+           <div class="form-group">
+             <label>Quantite</label>
+             <input type="number" class="form-control" formControlName="quantite" [(ngModel)]="selectedArticle.quantite" />
+           </div>
+           <div class="form-group">
+             <label>Famille</label>
+             <input type="text" class="form-control" formControlName="categorie" [(ngModel)]="selectedArticle.categorie" />
+           </div>
+           <div class="form-group">
+             <label>Fournisseur</label>
+             <select class="form-control" formControlName="fournisseur" [(ngModel)]="selectedArticle.fournisseur">
+             <option >Fournisseur 1.</option>
+             <option>Fournisseur 2</option></select>
+           </div>
+           <div class="form-group">
+             <label>Date de livraison</label>
+             <input type="date" class="form-control" formControlName="dateLivraison" [(ngModel)]="selectedArticle.dateLivraison"/>
+           </div>
+
+         <button class="btn btn-success" [disabled]="articleForm.pristine || articleForm.invalid"
+           (click)="operation == 'ajouter' ? addArticle() : updateArticle()">
+             {{operation == 'ajouter' ? 'Ajouter': operation == 'modifier' ? 'Modifier' : ''}}
+         </button>
+         </form>
+       </div>
+       <div *ngIf="operation == 'supprimer'">
+         <p class="card-title">
+           Reference: {{selectedArticle.ref}}
+         </p>
+         <p>
+           Voulez vous supprimer cet article ?
+         </p>
+         <button class="btn btn-success" [disabled]="!selectedArticle.ref" (click)="deleteArticle()" >Confirmer</button>
+       </div>
+
+     </div>
+     <div class="card-footer">
+
+     </div>
+   </div>
+ </div>
+
+</div>

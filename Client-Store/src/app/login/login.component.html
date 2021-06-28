@@ -1,0 +1,31 @@
+<div class="row container">
+  <div class="col-lg-5">
+    <form [formGroup]="loginForm" (submit)="login()">
+
+
+      <div class="container">
+        <label for="uname"><b>Username</b></label>
+        <input type="text" placeholder="Enter Username" id="username" name="username" formControlName="username" [(ngModel)]="credentials.username" />
+
+        <label for="psw"><b>Mot de passe</b></label>
+        <input type="password" placeholder="Enter Password" id="password" name="password" formControlName="password" [(ngModel)]="credentials.password" required />
+
+        <button type="submit">Se connecter</button>
+        <label>
+          <input type="checkbox" checked="checked" name="remember">Souviens de moi
+        </label>
+      </div>
+
+      <div class="container" style="background-color:#f1f1f1">
+        <button type="button" class="cancelbtn">Annuler</button>
+        <span class="psw">Oublié <a href="#">mot de passe?</a></span>
+      </div>
+    </form>
+
+  </div>
+  <div class="col-lg-7">
+    <div class="imgcontainer">
+      <img src="https://www.meusehautemarne.cci.fr/wp-content/uploads/2018/12/CCI-Store-management.jpg" alt="Avatar" class="avatar">
+    </div>
+  </div>
+</div>
